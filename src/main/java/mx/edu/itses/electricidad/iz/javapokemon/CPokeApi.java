@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class CPokeApi {
     public Pokemon buscarPokemon (String idOrName){
         if(idOrName ==null|| idOrName.trim().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Ingrese un nombre o Id de un Pokemon");
+            JOptionPane.showMessageDialog(null, "");
             return null;
         }
         try{

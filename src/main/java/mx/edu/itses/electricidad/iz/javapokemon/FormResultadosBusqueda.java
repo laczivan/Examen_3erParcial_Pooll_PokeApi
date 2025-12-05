@@ -12,15 +12,14 @@ import mx.edu.itses.electricidad.iz.javapokemon.Pokemon;
  */
 public class FormResultadosBusqueda extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormResultadosBusqueda
-     */
+    private Pokemon pokemonActual;
     public FormResultadosBusqueda(Pokemon p) {
         initComponents();
-        txtNombre.setText(p.getNombre());
-        txtPeso.setText(String.valueOf(p.getPeso()));
-        txtAltura.setText(String.valueOf(p.getAltura()));
-        txtExperiencia.setText(String.valueOf(p.getExperienciaBase()));
+        this.pokemonActual = p;
+        txtNombre.setText("Nombre: "+p.getNombre());
+        txtPeso.setText("Peso: "+String.valueOf(p.getPeso()));
+        txtAltura.setText("Altura: "+String.valueOf(p.getAltura()));
+        txtExperiencia.setText("Experiencia Base:" +String.valueOf(p.getExperienciaBase()));
         
         try{
             URL imgUrl = new URL(p.getImageUrl());
@@ -62,6 +61,7 @@ public class FormResultadosBusqueda extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         foto = new javax.swing.JLabel();
         btnMostrarTabla = new javax.swing.JButton();
+        btnBuscarOtroPokemon = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +75,13 @@ public class FormResultadosBusqueda extends javax.swing.JFrame {
 
         txtExperiencia.setText("Experiencia Base:");
 
+        txtnombres.setEditable(false);
+
+        txtaltura.setEditable(false);
+
+        txtexperiencia.setEditable(false);
+
+        txtpeso.setEditable(false);
         txtpeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtpesoActionPerformed(evt);
@@ -87,6 +94,13 @@ public class FormResultadosBusqueda extends javax.swing.JFrame {
         btnMostrarTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMostrarTablaActionPerformed(evt);
+            }
+        });
+
+        btnBuscarOtroPokemon.setText("Buscar Otro Pokemon");
+        btnBuscarOtroPokemon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarOtroPokemonActionPerformed(evt);
             }
         });
 
@@ -116,6 +130,9 @@ public class FormResultadosBusqueda extends javax.swing.JFrame {
                             .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(4, 4, 4))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnBuscarOtroPokemon)
+                        .addGap(26, 26, 26)
                         .addComponent(btnMostrarTabla)
                         .addGap(16, 16, 16))))
         );
@@ -144,7 +161,9 @@ public class FormResultadosBusqueda extends javax.swing.JFrame {
                     .addComponent(txtExperiencia)
                     .addComponent(txtexperiencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnMostrarTabla)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrarTabla)
+                    .addComponent(btnBuscarOtroPokemon))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -174,12 +193,20 @@ public class FormResultadosBusqueda extends javax.swing.JFrame {
 
     private void btnMostrarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTablaActionPerformed
     
-        
-        FormResultadosTabla tabla = new FormResultadosTabla();
+        this.dispose();
+        FormResultadosTabla tabla = new FormResultadosTabla(this.pokemonActual);
         tabla.setVisible(true);
         tabla.toFront();
         tabla.requestFocus();
+        
     }//GEN-LAST:event_btnMostrarTablaActionPerformed
+
+    private void btnBuscarOtroPokemonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarOtroPokemonActionPerformed
+        this.dispose();
+        
+        FormBuscador buscador = new FormBuscador();
+        buscador.setVisible(true);
+    }//GEN-LAST:event_btnBuscarOtroPokemonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,6 +214,7 @@ public class FormResultadosBusqueda extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarOtroPokemon;
     private javax.swing.JButton btnMostrarTabla;
     private javax.swing.JLabel foto;
     private javax.swing.JLabel jLabel5;

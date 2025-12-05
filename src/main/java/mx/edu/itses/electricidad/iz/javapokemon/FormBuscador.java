@@ -89,8 +89,10 @@ public class FormBuscador extends javax.swing.JFrame {
         Pokemon p = api.buscarPokemon(busqueda);
         if(p !=null){
             JavaPokeApi.listaPokemonesGuardados.add(p);
+            this.dispose();
             FormResultadosBusqueda resultados = new FormResultadosBusqueda(p);
             resultados.setVisible(true);
+            
         }
         
     }//GEN-LAST:event_btnBuscarActionPerformed
